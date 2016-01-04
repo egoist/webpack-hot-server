@@ -1,0 +1,33 @@
+{
+  "name": "webpack-hot-server",
+  "version": "0.0.1",
+  "description": "A short-hand to establish a web server for hot reloading.",
+  "license": "MIT",
+  "repository": "egoist/webpack-hot-server",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": "github.com/egoist"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "echo lol"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "react",
+    "vue",
+    "hot-reload",
+    "hmr"
+  ],
+  "dependencies": {
+    "express": "^4.13.3",
+    "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
+  }
+}
