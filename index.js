@@ -24,9 +24,9 @@ module.exports = function (options) {
 
 		app.listen(port, 'localhost', err => {
 			if (err) {
-				reject(err)
+				return reject(err)
 			}
-			resolve(port)
+			return resolve(port)
 		})
 	})
 }
