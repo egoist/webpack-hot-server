@@ -12,13 +12,16 @@ $ npm install --save-dev webpack-hot-server
 
 **devServer.js**
 
+You are recommended to use [`html-webpack-plugin`](https://github.com/ampedandwired/html-webpack-plugin) to generate custom HTML output, or this module will use default `index.html`.
+
 ```js
 const webpackHotServer = require('webpack-hot-server')
 const webpackConfig = require('./webpack.config')
 
 webpackHotServer({
 	port: 3000,
-	config: webpackConfig
+	config: webpackConfig,
+	customIndex: true // set when your are using `html-webpack-plugin`
 })
 .then(port => {
 	console.log(`Webpack Hot Server is running at http://lcoalhost:${port}`)

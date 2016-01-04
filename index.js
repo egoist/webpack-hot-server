@@ -1,4 +1,5 @@
 'use strict';
+const path = require('path')
 const webpack = require('webpack')
 const express = require('express')
 const app = express()
@@ -14,6 +15,12 @@ module.exports = function (options) {
 		}))
 
 		app.use(require('webpack-hot-middleware')(compiler))
+		
+		if (!options.customIndex) {
+			app.get('*', (req, res) => {
+				res.sendFile(path.join(__dirname, 'index.html'))
+			})
+		}
 
 		app.listen(port, 'localhost', err => {
 			if (err) {
