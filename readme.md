@@ -27,7 +27,7 @@ webpackHotServer({
 
 **Using with React**
 
-To enable hot reloading for React components, install `babel-preset-react-hmre` and put the following code in your `.babelrc` file:
+To enable hot reloading for React components, install [`babel-preset-react-hmre`](https://github.com/gaearon/babel-plugin-react-transform) and put the following code in your `.babelrc` file:
 
 ```json
 {
