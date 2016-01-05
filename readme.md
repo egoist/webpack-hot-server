@@ -35,10 +35,10 @@ To enable hot reloading for React components, install [`babel-preset-react-hmre`
 ```json
 {
 	"env": {
-    "development": {
-      "presets": ["react-hmre"]
-    }
-  }
+	    "development": {
+	    	"presets": ["react-hmre"]
+	    }
+	}
 }
 ```
 
