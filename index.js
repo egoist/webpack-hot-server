@@ -11,11 +11,12 @@ module.exports = function (options) {
 
 		app.use(require('webpack-dev-middleware')(compiler, {
 			noInfo: true,
-			publicPath: '/'
+			publicPath: '/',
+			colors: true
 		}))
 
 		app.use(require('webpack-hot-middleware')(compiler))
-		
+
 		if (!options.customIndex) {
 			app.get('*', (req, res) => {
 				res.sendFile(path.join(__dirname, 'index.html'))
