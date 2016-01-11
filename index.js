@@ -7,10 +7,12 @@ const app = express()
 module.exports = function (options) {
 	return new Promise((resolve, reject) => {
 		const port = options.port || 3001
-		const compiler = webpack(options.config)
+		const config = options.config || {}
+		config.output.publicPath = '/'
+		const compiler = webpack(config)
 
 		app.use(require('webpack-dev-middleware')(compiler, Object.assign({}, {
-			publicPath: '/',
+			publicPath: config.output.publicPath,
 			stats: {
 				colors: true,
 				chunks: false
