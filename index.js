@@ -10,9 +10,11 @@ module.exports = function (options) {
 		const compiler = webpack(options.config)
 
 		app.use(require('webpack-dev-middleware')(compiler, {
-			noInfo: true,
 			publicPath: '/',
-			colors: true
+			stats: {
+				colors: true,
+				chunks: false
+			}
 		}))
 
 		app.use(require('webpack-hot-middleware')(compiler))
