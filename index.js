@@ -2,6 +2,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const express = require('express')
+const
 const app = express()
 
 module.exports = function (options) {
@@ -9,13 +10,13 @@ module.exports = function (options) {
 		const port = options.port || 3001
 		const compiler = webpack(options.config)
 
-		app.use(require('webpack-dev-middleware')(compiler, {
+		app.use(require('webpack-dev-middleware')(compiler, Object.assign({}, {
 			publicPath: '/',
 			stats: {
 				colors: true,
 				chunks: false
 			}
-		}))
+		}, options.compiler || {})))
 
 		app.use(require('webpack-hot-middleware')(compiler))
 
