@@ -21,7 +21,8 @@ const webpackConfig = require('./webpack.config')
 webpackHotServer({
 	port: 3000,
 	config: webpackConfig,
-	customIndex: true // set when your are using `html-webpack-plugin`
+	customIndex: true // set when your are using `html-webpack-plugin`,
+	compiler: {} // webpack-dev-middleware compiler options
 })
 .then(port => {
 	console.log(`Webpack Hot Server is running at http://lcoalhost:${port}`)
