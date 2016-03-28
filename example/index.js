@@ -10,3 +10,5 @@ hotServer({
 		}
 	}
 })
+
+setTimeout(() => process.exit(), 1000)
