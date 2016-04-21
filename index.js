@@ -9,7 +9,6 @@ module.exports = function (options) {
 	return new Promise((resolve, reject) => {
 		const port = options.port || 3001
 		const config = options.config || {}
-		config.output.publicPath = '/'
 		const compiler = webpack(config)
 
 		const devMiddleWare = require('webpack-dev-middleware')(compiler, Object.assign({}, {
@@ -26,7 +25,11 @@ module.exports = function (options) {
 
 		app.get('*', (req, res) => {
 			if (options.customIndex) {
-				var index = self.middleware.fileSystem.readFileSync(path.join(config.output.path, 'index.html'))
+        const fp = typeof options.customIndex === 'string'
+          ? options.customIndex
+          : config.output.path
+        const filename = options.filename || 'index.html'
+				const index = self.middleware.fileSystem.readFileSync(path.join(fp, filename))
 			  res.end(index)
 			} else {
 				res.sendFile(path.join(__dirname, 'index.html'))

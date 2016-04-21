@@ -22,6 +22,8 @@ webpackHotServer({
 	port: 3000,
 	config: webpackConfig,
 	customIndex: true // set when your are using `html-webpack-plugin`,
+  // customIndex: '/directory/to/index.html',
+  // filename: 'awkward.html',
 	compiler: {} // webpack-dev-middleware compiler options
 })
 .then(port => {
