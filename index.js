@@ -27,18 +27,16 @@ module.exports = function (options) {
     app.use(require('webpack-hot-middleware')(compiler))
 
     app.get('*', (req, res) => {
-      self.middleware.waitUntilValid(() => {
-        if (options.customIndex) {
-          const fp = typeof options.customIndex === 'string'
-            ? options.customIndex
-            : config.output.path
-          const filename = options.filename || 'index.html'
-          const index = self.middleware.fileSystem.readFileSync(path.join(fp, filename))
-          res.end(index)
-        } else {
-          res.sendFile(path.join(__dirname, 'index.html'))
-        }
-      })
+      if (options.customIndex) {
+        const fp = typeof options.customIndex === 'string'
+          ? options.customIndex
+          : config.output.path
+        const filename = options.filename || 'index.html'
+        const index = self.middleware.fileSystem.readFileSync(path.join(fp, filename))
+        res.end(index)
+      } else {
+        res.sendFile(path.join(__dirname, 'index.html'))
+      }
     })
 
     app.listen(port, 'localhost', err => {
