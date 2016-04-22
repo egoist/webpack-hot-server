@@ -1,5 +1,5 @@
 'use strict';
-const path = require('path')
+const Path = require('path')
 const webpack = require('webpack')
 const express = require('express')
 const app = express()
@@ -27,16 +27,23 @@ module.exports = function (options) {
     app.use(require('webpack-hot-middleware')(compiler))
 
     app.get('*', (req, res) => {
-      if (options.customIndex) {
-        const fp = typeof options.customIndex === 'string'
-          ? options.customIndex
-          : config.output.path
-        const filename = options.filename || 'index.html'
-        const index = self.middleware.fileSystem.readFileSync(path.join(fp, filename))
-        res.end(index)
-      } else {
-        res.sendFile(path.join(__dirname, 'index.html'))
-      }
+      const fs = self.middleware.fileSystem
+      self.middleware.waitUntilValid(() => {
+        if (options.customIndex) {
+          const fp = typeof options.customIndex === 'string'
+            ? options.customIndex
+            : config.output.path
+          const filename = Path.join(fp, options.filename || 'index.html')
+          const exists = fs.statSync(filename).isFile()
+          if (exists) {
+            res.end(fs.readFileSync(filename))
+          } else {
+            res.end('Refresh when bundle valid...')
+          }
+        } else {
+          res.sendFile(Path.join(__dirname, 'index.html'))
+        }
+      })
     })
 
     app.listen(port, 'localhost', err => {
