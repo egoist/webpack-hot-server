@@ -21,6 +21,9 @@ module.exports = function (options) {
         chunkModules: false
       }
     }, options.compiler || {}))
+    
+    const dist = Path.dirname(config.output.path)
+    devMiddleWare.fileSystem.mkdirpSync(config.output.path)
 
     app.use(self.middleware = devMiddleWare)
 
@@ -33,12 +36,14 @@ module.exports = function (options) {
           const fp = typeof options.customIndex === 'string'
             ? options.customIndex
             : config.output.path
-          const filename = Path.join(fp, options.filename || 'index.html')
-          const exists = fs.statSync(filename).isFile()
+          const filename = options.filename || 'index.html'
+          const filepath = Path.join(fp, filename)
+          const contents = fs.readdirSync(dist)
+          const exists = contents.indexOf(filename) !== -1
           if (exists) {
-            res.end(fs.readFileSync(filename))
+            res.end(fs.readFileSync(filepath))
           } else {
-            res.end('Refresh when bundle valid...')
+            res.end('Refresh when bundle is valid...')
           }
         } else {
           res.sendFile(Path.join(__dirname, 'index.html'))
@@ -50,7 +55,7 @@ module.exports = function (options) {
       if (err) {
         return reject(err)
       }
-      return resolve(port)
+      resolve(port)
     })
   })
 }
