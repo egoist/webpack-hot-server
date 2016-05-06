@@ -51,3 +51,5 @@ module.exports = function (options) {
 
   return app
 }
+
+module.exports.express = express
