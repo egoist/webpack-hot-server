@@ -19,11 +19,14 @@ const webpackHotServer = require('webpack-hot-server')
 const webpackConfig = require('./webpack.config')
 
 const app = webpackHotServer({
-	config: webpackConfig,
-	customIndex: true // set when your are using `html-webpack-plugin`,
+  config: webpackConfig,
+  customIndex: true // set when your are using `html-webpack-plugin`,
   // customIndex: '/directory/to/index.html',
   // filename: 'awkward.html',
-	compiler: {} // webpack-dev-middleware compiler options
+  wrap(app) {
+    app.use() // ... apply your logic or middleware
+  },
+  compiler: {} // webpack-dev-middleware compiler options
 })
 
 app.listen(port, () => {

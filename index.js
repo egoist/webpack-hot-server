@@ -23,13 +23,17 @@ module.exports = function (options) {
   const dist = Path.dirname(config.output.path)
   devMiddleWare.fileSystem.mkdirpSync(config.output.path)
 
-  app.use(self.middleware = devMiddleWare)
+  app.use(devMiddleWare)
 
   app.use(require('webpack-hot-middleware')(compiler))
 
+  if (typeof options.wrap === 'function') {
+    options.wrap(app)
+  }
+
   app.get('*', (req, res) => {
-    const fs = self.middleware.fileSystem
-    self.middleware.waitUntilValid(() => {
+    const fs = devMiddleWare.fileSystem
+    devMiddleWare.waitUntilValid(() => {
       if (options.customIndex) {
         const fp = typeof options.customIndex === 'string'
           ? options.customIndex
