@@ -18,15 +18,15 @@ You are recommended to use [`html-webpack-plugin`](https://github.com/ampedandwi
 const webpackHotServer = require('webpack-hot-server')
 const webpackConfig = require('./webpack.config')
 
-webpackHotServer({
-	port: 3000,
+const app = webpackHotServer({
 	config: webpackConfig,
 	customIndex: true // set when your are using `html-webpack-plugin`,
   // customIndex: '/directory/to/index.html',
   // filename: 'awkward.html',
 	compiler: {} // webpack-dev-middleware compiler options
 })
-.then(port => {
+
+app.listen(port, () => {
 	console.log(`Webpack Hot Server is running at http://lcoalhost:${port}`)
 })
 ```
