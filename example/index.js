@@ -1,6 +1,8 @@
+const webpack = require('webpack')
 const hotServer = require('../')
 
 hotServer({
+	webpack,
 	port: 3001,
 	config: {
 		entry: __dirname + '/src.js',

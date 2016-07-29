@@ -27,8 +27,10 @@
   ],
   "dependencies": {
     "express": "^4.13.3",
-    "webpack": "^1.12.9",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^2.1.0-beta.20"
   }
 }

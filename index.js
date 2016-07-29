@@ -7,6 +7,9 @@ const self = this
 
 module.exports = function (options) {
   const config = options.config || {}
+  if (typeof options.webpack !== 'function') {
+    throw new TypeError('Expected to pass the webpack module')
+  }
   const compiler = webpack(config)
 
   const devMiddleWare = require('webpack-dev-middleware')(compiler, Object.assign({}, {
