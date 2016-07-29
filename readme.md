@@ -15,10 +15,12 @@ $ npm install --save-dev webpack-hot-server
 You are recommended to use [`html-webpack-plugin`](https://github.com/ampedandwired/html-webpack-plugin) to generate custom HTML output, or this module will use default `index.html`.
 
 ```js
+const webpack = require('wenpack')
 const webpackHotServer = require('webpack-hot-server')
 const webpackConfig = require('./webpack.config')
 
 const app = webpackHotServer({
+  webpack,
   config: webpackConfig,
   customIndex: true // set when your are using `html-webpack-plugin`,
   // customIndex: '/directory/to/index.html',
