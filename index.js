@@ -28,7 +28,9 @@ module.exports = function (options) {
 
   app.use(devMiddleWare)
 
-  app.use(require('webpack-hot-middleware')(compiler))
+  if (options.hot) {
+    app.use(require('webpack-hot-middleware')(compiler))
+  }
 
   if (typeof options.wrap === 'function') {
     options.wrap(app)

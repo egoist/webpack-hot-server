@@ -22,6 +22,7 @@ const webpackConfig = require('./webpack.config')
 const app = webpackHotServer({
   webpack,
   config: webpackConfig,
+  hot: true, // use HMR
   customIndex: true // set when your are using `html-webpack-plugin`,
   // customIndex: '/directory/to/index.html',
   // filename: 'awkward.html',
