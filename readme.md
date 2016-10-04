@@ -5,10 +5,12 @@
 ## Install
 
 ```
-$ npm install --save-dev webpack-hot-server
+$ npm install --save-dev webpack-hot-middleware webpack-hot-server
 ```
 
 ## Usage
+
+First, setup [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-middleware) in your webpack config, i.e. add to entry, push the plugin.
 
 **devServer.js**
 
