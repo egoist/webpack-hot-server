@@ -1,6 +1,6 @@
 {
   "name": "webpack-hot-server",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "A short-hand to establish a web server for hot reloading.",
   "license": "MIT",
   "repository": "egoist/webpack-hot-server",
