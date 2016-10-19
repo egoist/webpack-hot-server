@@ -23,8 +23,8 @@ module.exports = function (options) {
     }
   }, options.compiler || {}))
 
-  const dist = Path.dirname(config.output.path)
-  devMiddleWare.fileSystem.mkdirpSync(config.output.path)
+  const dist = config.output.path
+  devMiddleWare.fileSystem.mkdirpSync(dist)
 
   app.use(devMiddleWare)
 
