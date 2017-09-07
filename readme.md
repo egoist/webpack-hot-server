@@ -17,7 +17,7 @@ First, setup [webpack-hot-middleware](https://github.com/glenjamin/webpack-hot-m
 You are recommended to use [`html-webpack-plugin`](https://github.com/ampedandwired/html-webpack-plugin) to generate custom HTML output, or this module will use default `index.html`.
 
 ```js
-const webpack = require('wenpack')
+const webpack = require('webpack')
 const webpackHotServer = require('webpack-hot-server')
 const webpackConfig = require('./webpack.config')
 
